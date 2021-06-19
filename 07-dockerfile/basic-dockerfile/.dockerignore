@@ -1,0 +1,13 @@
+# include only index.html
+*.html
+!index.html
+# to ignore folder
+folder/
+# to ignore all prefix .html in subdirectory 
+**/*.html
+
+# exclude binary file
+*.tar.gz
+
+# ignore dockerfile
+Dockerfile
