@@ -1,11 +1,15 @@
-ARG IMAGE_VERSION
+ARG IMAGE_VERSION=7
 ARG IMAGE_NAME=centos
 
 FROM ${IMAGE_NAME}:${IMAGE_VERSION}
 ENV HTML_FOLDER=/usr/share/nginx/html
-RUN mkdir -p $HTML_FOLDER && \
-echo "<html><head><title>Halo World</title></head><body><h3>it's Works! ${IMAGE_NAME}:${IMAGE_VERSION} @ ${HTML_FOLDER}</h3></body></html>" > ${HTML_FOLDER}/index.html
-RUN echo ${HTTP_PROXY} > $HTML_FOLDER/http-proxy.txt
 
-ENTRYPOINT cat /usr/share/nginx/html/http-proxy.txt
+RUN mkdir -p $HTML_FOLDER
+
+# COPY index?.html ${HTML_FOLDER}/
+# ADD https://github.com/BootcampYoutubeChannel/belajar-docker/archive/refs/tags/07b-copy-resource.tar.gz ${HTML_FOLDER}/
+
+ADD belajar-docker-07b-copy-resource.tar.gz ${HTML_FOLDER}/
+
+ENTRYPOINT ls /usr/share/nginx/html
 # ENTRYPOINT cat /etc/redhat-release
