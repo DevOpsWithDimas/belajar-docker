@@ -10,7 +10,7 @@ ENV HTML_FOLDER=/usr/share/nginx/html
 MAINTAINER "Dimas Maryanto <dimmaryanto@gmail.com>"
 # LABEL maintainer="Dimas Maryanto <dimmaryanto@gmail.com>" org.vendor.name="PT. Tabeldata Informatika"
 LABEL org.vendor.address="JL. Pratista No 17 Kab. Bandung"
-LABEL version="1.1"
+LABEL version="1.2"
 
 RUN yum install epel-release -y && \
 yum install nginx -y && \
@@ -19,6 +19,7 @@ yum clean all
 RUN sed -i "s|80|8080|g" /etc/nginx/nginx.conf
 
 COPY index.html ${HTML_FOLDER}/index.html
+COPY nginx-ssl.conf ${NGINX_CONF}/nginx-ssl.conf
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
-EXPOSE 8080/tcp
+EXPOSE 8080/tcp 443/tcp
