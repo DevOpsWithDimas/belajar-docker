@@ -9,9 +9,9 @@ ENV POSTGRES_USER=postgres
 MAINTAINER "Dimas Maryanto <dimmaryanto@gmail.com>"
 # LABEL maintainer="Dimas Maryanto <dimmaryanto@gmail.com>" org.vendor.name="PT. Tabeldata Informatika"
 LABEL org.vendor.address="JL. Pratista No 17 Kab. Bandung"
-LABEL version="0.8"
+LABEL version="0.9"
 
 RUN yum install postgresql -y
 
-# CMD ["bash", "-c" ,"psql -h ${POSTGRES_HOST} -U ${POSTGRES_USER} -W"] 
 ENTRYPOINT ["psql"]
+CMD ["--help"] 
