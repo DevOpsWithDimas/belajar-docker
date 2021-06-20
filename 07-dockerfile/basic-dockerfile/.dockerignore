@@ -4,7 +4,7 @@
 # to ignore folder
 folder/
 # to ignore all prefix .html in subdirectory 
-**/*.html
+# **/*.html
 
 # exclude binary file
 *.tar.gz
