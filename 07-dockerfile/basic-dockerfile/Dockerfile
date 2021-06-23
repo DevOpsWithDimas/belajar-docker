@@ -10,16 +10,15 @@ ENV HTML_FOLDER=/usr/share/nginx/html
 MAINTAINER "Dimas Maryanto <dimmaryanto@gmail.com>"
 # LABEL maintainer="Dimas Maryanto <dimmaryanto@gmail.com>" org.vendor.name="PT. Tabeldata Informatika"
 LABEL org.vendor.address="JL. Pratista No 17 Kab. Bandung"
-LABEL version="1.2"
+LABEL version="1.3"
 
-RUN yum install epel-release -y && \
-yum install nginx -y && \
-yum clean all
+RUN groupadd www-data && \
+adduser -r -g www-data www-data
 
-RUN sed -i "s|80|8080|g" /etc/nginx/nginx.conf
+USER www-data:www-data
 
-COPY index.html ${HTML_FOLDER}/index.html
-COPY nginx-ssl.conf ${NGINX_CONF}/nginx-ssl.conf
+COPY index.html ${HTML_FOLDER}/index-root.html
+COPY --chown=www-data:www-data index.html ${HTML_FOLDER}/index.html
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
-EXPOSE 8080/tcp 443/tcp
+CMD whoami && ls -l ${HTML_FOLDER}/
+
