@@ -10,15 +10,19 @@ ENV HTML_FOLDER=/usr/share/nginx/html
 MAINTAINER "Dimas Maryanto <dimmaryanto@gmail.com>"
 # LABEL maintainer="Dimas Maryanto <dimmaryanto@gmail.com>" org.vendor.name="PT. Tabeldata Informatika"
 LABEL org.vendor.address="JL. Pratista No 17 Kab. Bandung"
-LABEL version="1.3"
+LABEL version="1.4"
 
 RUN groupadd www-data && \
 adduser -r -g www-data www-data
 
 USER www-data:www-data
+WORKDIR ${HTML_FOLDER}
 
-COPY index.html ${HTML_FOLDER}/index-root.html
-COPY --chown=www-data:www-data index.html ${HTML_FOLDER}/index.html
+COPY --chown=www-data:www-data index.html .
 
-CMD whoami && ls -l ${HTML_FOLDER}/
+RUN mkdir root
+WORKDIR root
+COPY index.html index.html
+
+CMD pwd && ls -l ../ && ls -l .
 
