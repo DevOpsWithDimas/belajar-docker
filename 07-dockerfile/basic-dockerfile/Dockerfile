@@ -10,15 +10,16 @@ ENV HTML_FOLDER=/usr/share/nginx/html
 MAINTAINER "Dimas Maryanto <dimmaryanto@gmail.com>"
 # LABEL maintainer="Dimas Maryanto <dimmaryanto@gmail.com>" org.vendor.name="PT. Tabeldata Informatika"
 LABEL org.vendor.address="JL. Pratista No 17 Kab. Bandung"
-LABEL version="1.5"
+LABEL version="1.6"
 
-RUN groupadd www-data && \
-adduser -r -g www-data www-data
+RUN yum install epel-release -y && \
+yum install nginx -y
 
-USER www-data:www-data
 WORKDIR ${HTML_FOLDER}
 
-#VOLUME ["/usr/share/nginx/html"]
-VOLUME ${HTML_FOLDER}
+COPY index.html .
 
-CMD pwd && ls -l .
+CMD ["nginx", "-g", "daemon off;"]
+
+HEALTHCHECK --interval=20s --timeout=3s --retries=1 --start-period=3s \
+CMD curl -f http://localhost/ || exit 1
