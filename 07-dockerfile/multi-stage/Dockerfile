@@ -1,3 +1,11 @@
+## first stage
+FROM node:16-alpine3.11 as builder
+
+WORKDIR /sources
+COPY package.json .
+RUN npm install --prod
+
+## second stage
 FROM nginx
 
 ENV HTML_FOLDER=/usr/share/nginx/html
@@ -5,12 +13,12 @@ ENV HTML_FOLDER=/usr/share/nginx/html
 LABEL maintaniner="software.dimas_m@icloud.com"
 LABEL com.maryanto.dimas.image.authors="software.dimas_m@icloud.com"
 LABEL com.maryanto.dimas.vendor="PT. Tabeldata Informatika"
-LABEL version="1.7"
+LABEL version="1.8"
 
 WORKDIR ${HTML_FOLDER}
 
 COPY index.html .
-COPY node_modules node_modules/
+COPY --from=builder /sources/node_modules node_modules/
 
 CMD ["nginx", "-g", "daemon off;"]
 
