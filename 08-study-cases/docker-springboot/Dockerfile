@@ -12,6 +12,8 @@ USER www-data
 
 ENV APPLICTION_PORT=80
 ENV PROFILE=default
+ENV DATABASE_USER=root
+ENV DATABASE_PASSWORD=password
 
 ARG JAR_FILE="docker-springboot-0.0.1-SNAPSHOT.jar"
 COPY --chown=www-data:www-data target/${JAR_FILE} spring-boot.jar
