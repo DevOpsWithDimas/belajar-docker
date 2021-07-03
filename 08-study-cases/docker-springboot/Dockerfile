@@ -11,13 +11,14 @@ WORKDIR /usr/local/share/applications
 USER www-data
 
 ENV APPLICTION_PORT=80
+ENV PROFILE=default
 
 ARG JAR_FILE="docker-springboot-0.0.1-SNAPSHOT.jar"
 COPY --chown=www-data:www-data target/${JAR_FILE} spring-boot.jar
 
 ENTRYPOINT ["java", "-jar", "-Djava.security.egd=file:/dev/./urandom", "spring-boot.jar"]
 
-CMD ["--server.port=${APPLICTION_PORT}"]
+CMD ["--server.port=${APPLICTION_PORT}", "--spring.profiles.active=${PROFILE}"]
 
 EXPOSE ${APPLICTION_PORT}/tcp
 
