@@ -10,12 +10,16 @@ adduser -r -g www-data www-data
 WORKDIR /usr/local/share/applications
 USER www-data
 
+ENV APPLICTION_PORT=80
+
 ARG JAR_FILE="docker-springboot-0.0.1-SNAPSHOT.jar"
 COPY --chown=www-data:www-data target/${JAR_FILE} spring-boot.jar
 
 ENTRYPOINT ["java", "-jar", "-Djava.security.egd=file:/dev/./urandom", "spring-boot.jar"]
 
-EXPOSE 8080/tcp
+CMD ["--server.port=${APPLICTION_PORT}"]
+
+EXPOSE ${APPLICTION_PORT}/tcp
 
 HEALTHCHECK --interval=5m --timeout=3s \
-  CMD curl -f http://localhost:8080/actuator/health || exit 1
+  CMD curl -f http://localhost:${APPLICTION_PORT}/actuator/health || exit 1

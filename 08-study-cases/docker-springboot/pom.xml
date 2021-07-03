@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.maryanto.dimas.udemy</groupId>
 	<artifactId>docker-springboot</artifactId>
-	<version>2021.07.04.01.49-release</version>
+	<version>2021.07.04.02.18-release</version>
 	<name>Dockerize Springboot Apps</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
