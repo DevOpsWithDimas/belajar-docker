@@ -1,0 +1,16 @@
+# git repo
+.git/
+.gitignore
+
+# jetbraint
+.idea/*
+*.iml
+*.ipl
+*.iwl
+
+# maven project
+target/
+!target/*.war
+
+# MAC OS
+.DS_Store
