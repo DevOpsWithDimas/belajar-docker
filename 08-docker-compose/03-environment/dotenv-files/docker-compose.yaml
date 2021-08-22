@@ -1,0 +1,6 @@
+version: '3.9'
+services:
+  nginx:
+    image: nginx:${NGINX_VERSION}
+    ports:
+      - 80:80
