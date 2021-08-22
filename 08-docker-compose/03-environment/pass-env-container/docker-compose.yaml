@@ -2,7 +2,7 @@ version: '3.9'
 services:
   mysql:
     image: mysql:${MYSQL_VERSION}
+    env_file:
+      - database.conf.env
     environment:
       - MYSQL_ROOT_PASSWORD
-      - MYSQL_DATABASE
-      - MYSQL_USER
