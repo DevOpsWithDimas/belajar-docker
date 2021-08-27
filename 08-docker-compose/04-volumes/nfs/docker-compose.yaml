@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - nfs-server:/usr/share/nginx/html
+volumes:
+  nfs-server:
+    driver_opts:
+      type: nfs
+      device: ":${NFS_SERVER_DEVICE}"
+      o: "addr=${NFS_SERVER_HOST},${NFS_SERVER_MODE}"
