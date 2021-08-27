@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  webapp:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ssh-server:/usr/share/nginx/html
+volumes:
+  ssh-server:
+    driver: vieux/sshfs
+    driver_opts:
+      sshcmd: "${SSH_USER}@${SSH_HOST}:${SSH_PATH}"
+      port: "${SSH_PORT}"
+      password: "${SSH_PASSWORD}"
