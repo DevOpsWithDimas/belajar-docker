@@ -1,0 +1,7 @@
+version: '3.9'
+services:
+  webapp:
+    image: dimmaryanto93/my-webapp:latest
+    build: .
+    ports:
+      - 80:80
