@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  webapp:
+    image: dimmaryanto93/my-webapp-args:latest
+    build:
+      context: ../basic
+      dockerfile: Dockerfile
+      args:
+        - NGINX_VERSION=mainline
+    ports:
+      - 80:80
