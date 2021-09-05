@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_DATABASE
+    volumes:
+      - mysql_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 33306:80
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - PMA_HOST=mysql
+    profiles:
+      - debug
+    depends_on:
+      - mysql
+volumes:
+  mysql_data:
