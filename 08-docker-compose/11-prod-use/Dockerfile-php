@@ -1,0 +1,8 @@
+FROM php:8.0-apache
+ENV DEBUG=false APP_ENV=production DB_HOST=localhost DB_PORT=5432 DB_USER=example DB_NAME=example DB_PASSWD=example
+WORKDIR /var/www/html
+
+COPY index.php .
+
+VOLUME /var/www/html/storage
+EXPOSE 80/tcp
