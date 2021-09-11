@@ -23,6 +23,7 @@
                 <li><a href="sass.html">HTML</a></li>
                 <li><a href="badges.html">CSS</a></li>
                 <li><a href="collapsible.html">JavaScript</a></li>
+                <li><a href="collapsible.html">PHP</a></li>
             </ul>
         </div>
     </nav>
