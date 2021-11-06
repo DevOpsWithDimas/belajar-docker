@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  dockerd:
+    image: docker:18.09-dind
+    entrypoint: ["dockerd-entrypoint.sh"]
+    privileged: true
+    volumes:
+      - docker_socket:/var/run/
+
+  docker:
+    image: docker:latest
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock
+      DOCKER_DRIVER: overlay2
+      DOCKER_TLS_CERTDIR: ""
+    command:
+      ## it's mean run docker info
+      - info
+    depends_on:
+      - dockerd
+    volumes:
+      - docker_socket:/var/run/
+
+volumes:
+  docker_socket:
