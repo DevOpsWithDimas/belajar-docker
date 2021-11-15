@@ -2,3 +2,5 @@ version: '3.8'
 services:
   webapp:
     image: nginx
+    ports:
+      - "8082:80"
