@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  portainerd:
+    image: portainer/portainer-ce:latest
+    ports:
+      - "9443:9443"
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  # Optional: add an other environment to server
+  portainer_agen:
+    image: portainer/agent:latest
+    ports:
+      - "9001:9001"
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+volumes:
+  portainer_data:
