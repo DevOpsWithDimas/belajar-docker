@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  routing:
+    image: nginx:mainline
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.default.template.conf:/etc/nginx/templates/default.conf.template
