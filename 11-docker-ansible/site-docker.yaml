@@ -1,0 +1,7 @@
+- hosts: [ dockerd ]
+  vars:
+    docker_insecure_registries_enabled: false
+    docker_insecure_registries_conf: [ ]
+  roles:
+    - { role: dimmaryanto93.docker }
+    - { role: dimmaryanto93.docker_compose }
