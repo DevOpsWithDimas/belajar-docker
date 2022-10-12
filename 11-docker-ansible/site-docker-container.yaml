@@ -15,3 +15,15 @@
         published_ports:
           - "80:80"
         restart_policy: always
+
+    - name: Execute in container
+      community.docker.docker_container_exec:
+        container: webapp
+        argv:
+          - cat
+          - /usr/share/nginx/html/index.html
+      register: index_html
+
+    - name: print
+      debug:
+        var: index_html.stdout
