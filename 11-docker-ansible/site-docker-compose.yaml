@@ -1,0 +1,29 @@
+- hosts: [dockerd]
+  tasks:
+    - name: run db & web containers
+      community.docker.docker_compose:
+        project_name: udemy
+        state: present
+        definition:
+          version: '3.9'
+          volumes:
+            pg_data: {}
+          services:
+            db:
+              image: postgres:14.2
+              environment:
+                POSTGRES_PASSWORD: admin
+              ports:
+                - "5432:5432"
+              restart: always
+              volumes:
+                - pg_data:/var/lib/postgresql/data
+            web:
+              image: httpd
+              ports:
+                - "8080:80"
+      register: compose_run
+
+    - name: list Containers
+      debug:
+        var: compose_run
