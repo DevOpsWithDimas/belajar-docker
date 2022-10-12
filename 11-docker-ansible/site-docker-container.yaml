@@ -1,0 +1,8 @@
+- hosts: ['dockerd']
+  tasks:
+    - name: Pull nginx image
+      docker_image:
+        name: nginx
+        source: pull
+        state: absent
+        tag: mainline
