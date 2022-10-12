@@ -4,5 +4,14 @@
       docker_image:
         name: nginx
         source: pull
-        state: absent
+        state: present
         tag: mainline
+
+    - name: Run nginx container
+      docker_container:
+        name: webapp
+        image: nginx:mainline
+        state: started
+        published_ports:
+          - "80:80"
+        restart_policy: always
